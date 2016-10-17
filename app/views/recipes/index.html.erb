@@ -1,0 +1,23 @@
+<h1>Recipe Finder</h1>
+<h2>Searching for <%= @keyword %></h2>
+
+<% if @recipes.nil? %>
+	<p>No recipes found</p>
+<% else %>
+	<table>
+		<tr>
+			<th>Thumbnail</th>
+			<th>Title</th>
+			<th>Social Rank</th>
+		</tr>
+		<% @recipes.each do |recipe| %>
+			<tr class=<% cycle('even', 'odd') %>>
+				<td><%= link_to image_tag(recipe["image_url"]), recipe["source_url"] %></td>
+				<td><%= link_to sanitize(recipe["title"]), recipe["source_url"] %></td>
+				<td><%= recipe["social_rank"] %></td>
+			</tr>
+		<% end %>
+	</table>
+<% end %>
+
+<p>Powered By Food2Fork.com</p>
